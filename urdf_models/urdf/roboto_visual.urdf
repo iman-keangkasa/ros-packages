@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+
+<!--FIX LIMIT AND THE NOMENCLATURE: JOINTS AND LINK NUMBER IS OFF-->
+<!--FIX THE MODEL DIMENSION: FOR LINK BASE AND LINK1-->
+<!--ADD INERTIA FOR ALL LINKS-->
+<!--REVISE DH PARAMETERS-->
+<!-- REDO LINKS 6 and 7 -->
+<!--  -->
+<!--USE XARCO AND TRANSFER TO SRDF FOR GAZEBO-->
+<robot name="roboto_visual">
+	<material name="orange">
+		<color rgba="0.756 0.3608 0.0392 1"/>
+	</material>
+
+	<material name="silver">
+		<color rgba="0.6157 0.8392 0.9411 1"/>
+	</material>
+
+	<link name="world"/>
+
+	<link name="base">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/base.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="orange"/>
+		</visual>
+	</link>
+
+	<link name="link1">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link1.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="orange"/>
+		</visual>
+	</link>
+
+	<joint name="world_to_base" type="fixed">
+		<parent link="world"/>
+		<child link="base"/>
+		<origin xyz="0 0 0"/>
+	</joint>
+
+	<joint name="joint1" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1.0" lower="-1.4835" upper="1.4835" velocity="5.0"/>
+		<origin rpy="0 0 0" xyz="0 0 0.118"/>
+		<parent link="base"/>
+		<child link="link1"/>
+	</joint>
+	
+	<link name="link2">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link2.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="orange"/>
+		</visual>
+	</link>
+	
+	<joint name="joint2" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1.0" lower="-2.7925" upper="0" velocity="5.0"/>
+		<!--LIMITS AND ORIGIN NEED CORRECTION -->
+		<origin rpy="-1.5707 0 0" xyz="0.15 0 0.345"/>
+		<parent link="link1"/>
+		<child link="link2"/>
+	</joint>
+
+	<link name="link3">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link3.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 1.5707"/>
+			<material name="orange"/>
+		</visual>
+	</link>
+
+	<joint name="joint3" type="revolute">
+		<axis xyz="0 0 1"/>
+		<!-- LIMITS AND ORIGIN NEED CORRECTION -->
+		<limit effort="1.0" lower="-1.5708" upper="1.5708" velocity="5.0"/>
+		<origin rpy="0 0 0" xyz="0.6 0 0"/>
+		<parent link="link2"/>
+		<child link="link3"/>
+	</joint>
+
+	<link name="link4">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link4_2nd.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="1.5708 0 0"/>
+			<material name="silver"/>
+		</visual>
+	</link>
+	<joint name="joint4" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1.0" lower="0" upper="3.142" velocity="5.0"/>
+		<origin rpy="-1.5707 0 0" xyz="0.12 0 0"/>
+		<parent link="link3"/>
+		<child link="link4"/>
+	</joint>
+	
+	<link name="link5">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link5.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 -1.5708"/>
+			<material name="orange"/>
+		</visual>
+	</link>
+	<joint name="joint5" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1.0" lower="0" upper="3.142" velocity="5.0"/>
+		<origin rpy="1.5708 0 0" xyz="0 0 0.72"/>
+		<parent link="link4"/>
+		<child link="link5"/>
+	</joint>
+	
+	<link name="link6">
+		<visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link6.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="silver"/>
+		</visual>
+	</link>
+	<!--LINK6 IS A DUMMY LINK TO RECONCILE THE LAST JOINT WITH THE END EFFECTOR-->
+	<joint name="joint6" type="revolute">
+		<axis xyz="0 0 1"/>
+		<limit effort="1.0" lower="0" upper="3.142" velocity="5.0"/>
+		<origin rpy="-1.5708 0 0" xyz="0 0 0"/>
+		<parent link="link5"/>
+		<child link="link6"/>
+	</joint>
+	
+	<link name="link7">
+		<!--visual>
+			<geometry>
+				<mesh filename="package://urdf_models/meshes/link6.STL"/>
+			</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<material name="silver"/>
+		</visual-->
+	</link>
+	<joint name="joint7" type="fixed">
+		<!--axis xyz="0 0 1"/>
+		<limit effort="1.0" lower="0" upper="3.142" velocity="5.0"/-->
+		<origin rpy="0 0 0" xyz="0 0 0.085"/>
+		<parent link="link6"/>
+		<child link="link7"/>
+	</joint>
+
+
+</robot>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="irb1400">
+	
+	<!--MATERIAL-->
+	<material name="orange">
+		<color rgba="0.75686275 0.36078431 0.03921569 1"/>
+	</material>
+
+	<material name="silver">
+		<color rgba="0.61568627 0.83921569 0.94117647 1"/>
+	</material>
+
+	<!--LINKS-->
+   
+    <link name="link4">
+    <inertial>
+      <origin
+        xyz="-5.9023E-14 -2.8014E-06 1.8685"
+        rpy="0 0 0" />
+      <mass
+        value="11.024" />
+      <inertia
+        ixx="1.04704842520385"
+        ixy="-0.00134671229464563"
+        ixz="2.37218448689338E-13"
+        iyy="1.04790395781747"
+        iyz="1.57581187974158E-05"
+        izz="0.0232013100878432" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_models/meshes/link5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_models/meshes/link5.STL" />
+      </geometry>
+    </collision>
+  </link></robot>	

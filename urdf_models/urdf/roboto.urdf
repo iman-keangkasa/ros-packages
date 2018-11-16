@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<robot name="roboto">
+	
+	<!--material-->
+	<material name="orange">
+		<color rgba="0.75686275 0.36078431 0.03921569 1"/>
+	</material>
+
+	<material name="silver">
+		<color rgba="0.61568627 0.83921569 0.94117647 1"/>
+	</material>
+	
+	<link name="world"/>
+	
+	
+	<!--links: base-->
+
+	<link name="base">
+		<inertial>
+		<origin
+        	xyz="-0.11257 -4.1589e-05 0.057533"
+        	rpy="0 0 0" />
+      	<mass
+        	value="25.417" />
+      	<inertia
+        	ixx="0.347632032016038"
+        	ixy="-0.000497937869254212"
+        	ixz="0.0371909126715644"
+        	iyy="0.710520929572187"
+        	iyz="0.000244473496051384"
+        	izz="0.978461123632107" />
+    	</inertial>
+    <visual>
+      		<origin
+        		xyz="0 0 0"
+        		rpy="0 0 0" />
+      		<geometry>
+        		<mesh
+					filename="package://urdf_models/meshes/base.STL"/>
+      		</geometry>
+      	<material name="orange"/>
+    </visual>
+	<collision>
+      		<origin
+				xyz="0 0 0"
+				rpy="0 0 0" />
+      		<geometry>
+      			<mesh
+					filename="package://urdf_models/meshes/base.STL"/>
+      		</geometry>
+	</collision>
+	</link>
+
+	<link name="link1">
+		<inertial>
+		<origin
+			xyz="0.048532 0.0047642 0.2152"
+			rpy="0 0 0" />
+		<mass
+				value="32.007" />
+		<inertia
+			ixx="1.06695162498236"
+			ixy="0.0263563429413544"
+			ixz="-0.227777437748705"
+			iyy="0.810219541810416"
+			iyz="0.00112484567476821"
+			izz="0.977594438459942" />
+		</inertial>
+		<visual>
+			<origin
+				xyz="0 0 0"
+				rpy="0 0 0" />
+			<geometry>
+				<mesh
+					filename="package://urdf_models/meshes/link1.STL" />
+			</geometry>
+			<material
+				name="orange">
+			</material>
+		</visual>
+		<collision>
+			<origin
+				xyz="0 0 0"
+				rpy="0 0 0" />
+			<geometry>
+				<mesh
+					filename="package://urdf_models/meshes/link1.STL" />
+			</geometry>
+		</collision>
+	</link>
+	
+	<joint name="world_to_robot" type="fixed">
+		<parent link="world"/>
+		<child link="base"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="joint1" type="revolute">
+		<origin rpy="0 0 0" xyz="0 0 0.0925"/>
+		<axis xyz="0 0 1"/>
+		<limit effort="1000.0" lower="-2.967" uppper="2.967" velocity="5"/>
+		<parent link="base"/>
+		<child link="link1"/>
+	</joint>
+
+</robot>

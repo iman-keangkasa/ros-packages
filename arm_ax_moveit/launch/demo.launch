@@ -1,0 +1,53 @@
+<launch>
+
+  <!-- By default, we do not start a database (it can be large) -->
+  <arg name="db" default="false" />
+  <!-- Allow user to specify database location -->
+  <arg name="db_path" default="$(find arm_ax_moveit)/default_warehouse_mongo_db" />
+
+  <!-- By default, we are not in debug mode -->
+  <arg name="debug" default="false" />
+
+  
+  <rosparam file="$(find arm_ax_control)/config/earm_control.yaml" command="load"/>
+  <rosparam file="$(find arm_ax_control)/config/control.yaml" command="load"/>
+  <rosparam file="$(find arm_ax_control)/config/joints.yaml" command="load"/>
+
+
+  <node name="controller_spawners" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args= "joint_state_controller
+					arm_controller" />
+
+  <arg name="use_gui" default="false" />
+  <arg name="use_rviz" default="false" />
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find arm_ax_moveit)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="3.0"/>
+  
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find arm_ax_moveit)/launch/moveit_rviz.launch" if="$(arg use_rviz)">
+    <arg name="config" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- Gazebo-->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model arm  -x $(arg x) -y $(arg y) -z $(arg z) -param robot_description"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
+   <!--<remap from="/joint_states" to="/joint_states" />-->
+  </node>
+
+  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find arm_ax_moveit)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="true"/>
+    <arg name="info" value="false"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+</launch>

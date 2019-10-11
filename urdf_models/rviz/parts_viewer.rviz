@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RobotState1
+        - /RobotState1/Links1
       Splitter Ratio: 0.5
     Tree Height: 565
   - Class: rviz/Selection
@@ -48,6 +50,29 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
+    - Attached Body Color: 150; 50; 150
+      Class: moveit_rviz_plugin/RobotState
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        link1_fixed_coordinate:
+          Alpha: 1
+          Show Axes: true
+          Show Trail: false
+          Value: true
+      Name: RobotState
+      Robot Alpha: 0.5
+      Robot Description: robot_description
+      Robot State Topic: display_robot_state
+      Show All Links: true
+      Show Highlights: true
+      Value: true
+      Visual Enabled: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -109,5 +134,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 214
-  Y: 100
+  X: 175
+  Y: 47

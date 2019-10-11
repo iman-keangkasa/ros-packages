@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<robot name="testing" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:include filename="$(cwd)/link4_inertial.urdf.xacro"/>		
+	<xacro:include filename="$(cwd)/link5_inertial.urdf.xacro"/>
+</robot>

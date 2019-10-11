@@ -29,11 +29,11 @@
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0 0 -1.684"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf_models/meshes/link5.STL" />
+          filename="package://urdf_models/meshes/link4.STL" />
       </geometry>
       <material
         name="">
@@ -43,11 +43,11 @@
     </visual>
     <collision>
       <origin
-        xyz="0 0 0"
+        xyz="0 0 -1.684"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://urdf_models/meshes/link5.STL" />
+          filename="package://urdf_models/meshes/link4.STL" />
       </geometry>
     </collision>
   </link></robot>	

@@ -1,0 +1,43 @@
+<robot
+  name="link6">
+  <link
+    name="link6">
+    <inertial>
+      <origin
+        xyz="-0.00075 -0.00034342 -0.00018608"
+        rpy="0 0 0" />
+      <mass
+        value="0.016853" />
+      <inertia
+        ixx="2.80644119747642E-06"
+        ixy="2.66387834592345E-22"
+        ixz="9.08671417210683E-21"
+        iyy="2.92418288601994E-06"
+        iyz="-3.26381144284828E-09"
+        izz="5.43699994911195E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_models/meshes/link6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_models/meshes/link6.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

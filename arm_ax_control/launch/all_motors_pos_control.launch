@@ -1,0 +1,38 @@
+<launch>
+<arg name="device_name_mx"             default="/dev/ttyUSB1"/>
+<arg name="device_name_pro"             default="/dev/ttyUSB0"/>
+<arg name="baud_rate_pro"               default="57600"/>
+<arg name="baud_rate_mx"               default="57600"/>
+
+<arg name="joint_1"              default="1"/>
+<arg name="joint_2"              default="2"/>
+<arg name="joint_3"              default="3"/>
+<arg name="joint_4"              default="4"/>
+<arg name="joint_5"              default="5"/>
+<arg name="joint_6"              default="6"/>
+
+<arg name="profile_velocity"        default="200"/>
+<arg name="profile_acceleration"    default="200"/>
+
+<param name="device_name_mx"           value="$(arg device_name_mx)"/>
+<param name="device_name_pro"           value="$(arg device_name_pro)"/>
+<param name="baud_rate_mx"             value="$(arg baud_rate_mx)"/>
+<param name="baud_rate_pro"             value="$(arg baud_rate_pro)"/>
+
+<param name="joint_1"            value="$(arg joint_1)"/>
+<param name="joint_2"            value="$(arg joint_2)"/>
+<param name="joint_3"            value="$(arg joint_3)"/>
+<param name="joint_4"            value="$(arg joint_4)"/>
+<param name="joint_5"            value="$(arg joint_5)"/>
+<param name="joint_6"            value="$(arg joint_6)"/>
+
+<param name="profile_velocity"      value="$(arg profile_velocity)"/>
+<param name="profile_acceleration"  value="$(arg profile_acceleration)"/>
+
+<!--<node name="position_control_pro" pkg="pro_arm_move" type="position_controller_pro" required="true" output="screen"/>-->
+<node name="position_controller_pro" pkg="pro_arm_move" type="position_controller_pro" required="true" output="screen"/>
+<node name="position_controller_mx" pkg="pro_arm_move" type="position_controller_mx" required="true" output="screen"/>
+<node name="pos_send_movements" pkg="pro_arm_move" type="pos_send_movements" required="true" output="screen"/>
+
+
+</launch>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<launch>
+
+ <!-- GAZEBO-->
+  
+ 
+      <arg name="paused" default="false"/>
+      <arg name="use_sim_time" default="true"/>
+      <arg name="gui" default="true"/>
+      <arg name="headless" default="true"/>
+      <arg name="debug" default="true"/>
+
+
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+	    <arg name="world_name" value="$(find arm_ax_control)/worlds/empty.world"/>
+	    <arg name="paused" value="$(arg paused)"/>
+	    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+	    <arg name="gui" value="$(arg gui)"/>
+	    <arg name="headless" value="$(arg headless)"/>
+	    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+	
+  <include file="$(find arm_ax_moveit)/launch/demo.launch" >
+         <arg name="z" default="0.0"/>
+ 	 <arg name="x" default="-1.5"/> 
+ 	 <arg name="y" default="0.0"/>
+	 <arg name="use_rviz" default="false"/>
+  </include> 
+<!--arm_ax_control_node-->
+<node name="arm_ax_control_node" pkg="arm_ax_control" type="arm_ax_control_node" output="screen"/>
+
+</launch>

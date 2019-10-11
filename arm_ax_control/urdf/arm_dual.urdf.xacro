@@ -1,0 +1,733 @@
+
+<robot name="arm">
+
+ 
+	<gazebo>
+	  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	 
+		<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+	  </plugin>
+	</gazebo>
+
+	<!--
+	 Trying to get thing to not flail START
+	  <dynamics damping="0.0" friction="0.0"/>
+
+	  <physics type="ode">
+	  <gravity xyz="0 0 -9.8"/>
+	  <ode>
+	    <solver type="quick" dt="0.0001" iters="1000" sor="1.3"/>
+	    <constraints cfm="0.0" erp="0.1" contact_max_correcting_vel="10.0" contact_surface_layer="0.001"/>
+	  </ode>
+	</physics>
+	-->
+
+	 <material name="blue">
+	    <color rgba="0 0 0.8 1"/>
+	  </material>
+
+	  <material name="white">
+	    <color rgba="0.9 0.9 0.9 1"/>
+	  </material>
+	  <material name="pure_white">
+	    <color rgba="1 1 1 1"/>
+	  </material>
+	    <material name="clear_gray">
+	    <color rgba="0.5 0.5 0.5 1"/>
+	  </material>
+	  
+	  <material name="black">
+	    <color rgba="0.05 0.05 0.05 0.95"/>
+	  </material>
+	    <material name="red">
+	    <color rgba="0.8 0.0 0.0 1"/>
+	  </material>
+	  
+
+	<!--PLANO BASE -->
+
+	  <link name="world"/>
+	   <joint name="fixed" type="fixed">
+	    <parent link="world"/>
+	    <child link="support_box"/>
+	  </joint>
+
+	  <link name="support_box">
+	  <inertial>
+		<origin  xyz="0.0 0.0 0.06"  rpy="0 0 0" />
+		<mass  value="0.8" />
+		<inertia ixx="0.016667333" ixy="0.0" ixz="0.00"  iyy="0.016667333"  iyz="0.0" izz="0.016667333" />
+	    </inertial>
+	    <visual>
+		<origin rpy="0 0 0" xyz="0 0 0.06"/>
+		<geometry>
+		  <box size="1 1 .01"/>
+		  <!--making it slightly bigger in x and z direction-->
+		</geometry>
+		<material name="clear_gray"/>
+	    </visual>
+	    <collision>
+		<origin rpy="0 0 0" xyz="0 0 0.06"/>
+		<geometry>
+		  <box size="1 1 .01"/>
+		  <!--making it slightly bigger in x and z direction-->
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	   <!--EARMBASE-->
+	   <joint name="earm_joint_base" type="fixed">
+	    <parent link="support_box"/>
+	    <child link="base_link"/>
+	     <origin  xyz="0.05 -0.03 0.065"  rpy="0 0 0" />
+	  </joint>
+
+	  <link  name="base_link">
+	    <inertial>
+		<origin  xyz="0.0 0.0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/mount.stl" scale="0.001 0.001 0.001"/>
+		</geometry>
+		 <material name="blue"/>
+	     </visual>
+	    <collision>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/mount.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	  <!--PRIMERMotorBASE-->
+	   <joint name="motor_base" type="fixed">
+	    <parent link="base_link"/>
+	    <child link="motor_base"/>
+	     <origin  xyz="-0.05 0.03 0.02"  rpy="1.570796327 0 3.14159" />
+	  </joint>
+
+	  <link  name="motor_base">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>    
+		 <material name="black"/>     
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	  <!--ACOPLE PLANO PRIMER JOINT-->
+	   <joint name="joint1" type="revolute">
+	    <parent link="motor_base"/>
+	    <child link="acople_plano"/>
+	     <origin  xyz="-0.0 0.021 0.0"  rpy="1.570795 0 0" />
+	     <axis  xyz="0 0 -1" />
+	    <limit  lower="-2.6179938" upper="2.6179938" effort="40"  velocity="3.57" />
+	  </joint>
+	  
+	 <link  name="acople_plano">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001"/>
+		</geometry>   
+		 <material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	    <!--SEGUNDOMotor-->
+	   <joint name="motor_2" type="fixed">
+	    <parent link="acople_plano"/>
+	    <child link="motor2"/>
+	     <origin  xyz="-0.0 -0.025 -0.041"  rpy="3.14159 0 3.14159 " />
+	  </joint>
+
+	  <link  name="motor2">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		 <material name="black"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+		<!--SEGUNDOMotorGEMELO-->
+	   <joint name="motor_2g" type="fixed">
+	    <parent link="acople_plano"/>
+	    <child link="motor2g"/>
+	     <origin  xyz="-0.0 0.025 -0.041"  rpy="3.14159 0 0 " />
+	  </joint>
+
+	  <link  name="motor2g">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		 <material name="black"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	  
+	   <!--ACOPLE BRACKET LARGO SEGUNDA JOINT-->
+	   <joint name="joint2" type="revolute">
+	    <parent link="motor2"/>
+	    <child link="acople_bracket_l"/>
+	     <origin  xyz="0.0 0.0 0.0"  rpy="0 0 0" />
+	     <axis  xyz="0 1 0" />
+	    <limit  lower="-2.3" upper="2.3" effort="60"  velocity="1.6" />
+	  </joint>
+	  
+	 <link  name="acople_bracket_l">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F4.stl" scale="0.001 0.001 0.001"/>
+		</geometry>   
+		 <material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F4.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	  <!--ACOPLE BRACKET LARGO SEGUNDA JOINT GEMELO-->
+	  
+	     <joint name="joint2g" type="revolute">
+	    <parent link="motor2g"/>
+	    <child link="acople_bracket_lg"/>
+	     <mimic joint="joint2" multiplier="-1.0" offset="0.0" />
+	     <origin  xyz="0.0 0.0 0.0"  rpy="0 0 0" />
+	     <axis  xyz="0 1 0" />
+	    <limit  lower="-2.3" upper="2.3" effort="60"  velocity="1.6" />
+	  </joint>
+	  
+	 <link  name="acople_bracket_lg">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F4.stl" scale="0.001 0.001 0.001"/>
+		</geometry>   
+		 <material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F4.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+
+		<!--TERCERMotor  
+		 <joint name="acople_m3g" type="fixed">
+	    <parent link="acople_bracket_lg"/>
+	    <child link="acople_plano_m3"/>
+	     <origin  xyz="-0.0 0.025 0.052"  rpy="3.14159 0 3.14159 " />
+	  </joint>-->
+		
+	 <!--T -->  <joint name="acople_m3" type="fixed">
+	    <parent link="acople_bracket_l"/>
+	    <child link="acople_plano_m3"/>
+	     <origin  xyz="-0.0 0.025 0.052"  rpy="3.14159 0 3.14159 " />
+	  </joint> 
+	  
+	  
+	    
+	 <link  name="acople_plano_m3">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001"/>
+		</geometry>   
+		 <material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	     <joint name="motor3" type="fixed">
+	    <parent link="acople_plano_m3"/>
+	    <child link="motor3"/>
+	     <origin  xyz="-0.0 0.0 -0.041"  rpy="3.14159 0 3.14159 " />
+	  </joint>  
+	  
+	  
+
+	  <link  name="motor3">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		<material name="black"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	    <joint name="joint3" type="revolute">
+	    <parent link="motor3"/>
+	    <child link="acople_bracket_c1"/>
+	     <origin  xyz="-0.0 0.0 0.0"  rpy="0 0 0" />
+	     <axis  xyz="0 1 0" />
+	    <limit  lower="-2.3" upper="2.3" effort="40"  velocity="4.57" />
+	  </joint>
+	  
+	 <link  name="acople_bracket_c1">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F4.stl" scale="0.001 0.001 0.001"/>
+		</geometry>   
+		 <material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F4.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	  
+	  <joint name="joint4" type="revolute">
+	    <parent link="acople_bracket_c1"/>
+	    <child link="motor4"/>
+	     <origin  xyz="-0.0 0.0 0.072"  rpy="-1.570795 0 3.14" />
+		<axis  xyz="0 -1 0" />
+	    <limit  lower="-2.6179938" upper="2.6179938" effort="40"  velocity="4.57" />
+	  </joint>    
+	  
+
+	  <link  name="motor4">
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		<material name="black"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	  <joint name="acople_m4" type="fixed">
+	    <parent link="motor4"/>
+	    <child link="acople_plano_m4"/>
+	     <origin  xyz="0.019 0 -0.015"  rpy="0 1.57 0 " />
+	  </joint>  
+
+	  <link  name="acople_plano_m4">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		<material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	    <joint name="acople_m41" type="fixed">
+	    <parent link="acople_plano_m4"/>
+	    <child link="acople_plano_m41"/>
+	     <origin  xyz="0.00 0 -0.0"  rpy="0 3.14159 1.57" />
+	  </joint>  
+
+	  <link  name="acople_plano_m41">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		<material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F3.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	 
+	    <joint name="motor5" type="fixed">
+	    <parent link="acople_plano_m41"/>
+	    <child link="motor5"/>
+	     <origin  xyz="0.0228 0.0 -0.019"  rpy="0 1.57 0" />
+	  </joint>    
+	  
+
+	  <link  name="motor5">
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		<material name="black"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	     <joint name="joint5" type="revolute">
+	    <parent link="motor5"/>
+	    <child link="acople_bracket_c2"/>
+	     <origin  xyz="-0.0 0.0 0.0"  rpy="0 0 0" />
+	     <axis  xyz="0 1 0" />
+	    <limit  lower="-0.8" upper="1.7" effort="40"  velocity="4.57" />
+	  </joint>
+	  
+	 <link  name="acople_bracket_c2">
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/F2.stl" scale="0.001 0.001 0.001"/>
+		</geometry>   
+		 <material name="white"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/F2.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+	    <joint name="joint6" type="revolute">
+	    <parent link="acople_bracket_c2"/>
+	    <child link="motor6"/>
+	     <origin  xyz="-0.0 0.0 0.047"  rpy=" 1.57 0 3.14" />
+		<axis  xyz="0 -1 0" />
+	    <limit  lower="-2.7179938" upper="2.7179938" effort="60"  velocity="4.57" />
+	  </joint>    
+	  
+
+	  <link  name="motor6">
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+	    <inertial>
+	     <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<mass  value="0.01" />
+		<inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+	    </inertial>
+	    <visual>
+		<origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>     
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001"/>
+		</geometry>         
+		<material name="black"/>
+	    </visual>
+	    <collision>
+	    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+		<geometry>
+		  <mesh filename="package://arm_ax_control/meshes/ax12_box.stl" scale="0.001 0.001 0.001" />
+		</geometry>
+	    </collision>
+	  </link>
+	  
+    <joint name="cam_joint" type="fixed">
+      <parent link="motor6"/>
+      <child link="cam_link"/>
+      <origin  xyz="0 -0.02 0.0"  rpy="0 0 0" />
+    </joint>
+    
+    <link name="cam_link">
+     <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.01 0.005 0.005" />
+        </geometry>
+       <material name="black"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="cam_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-1.570796327 0.0 -1.570796327" />
+      <parent link="cam_link" />
+      <child link="cam_optical_frame"/>
+    </joint>
+  
+    <link name="cam_optical_frame"/>    
+	  
+	  <transmission name="tran1">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint1">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor1">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	   <transmission name="tran2">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint2">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor2">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	     <transmission name="tran2g">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint2g">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor2g">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	   <transmission name="tran3">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint3">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor3">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	   <transmission name="tran4">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint4">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor4">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	   <transmission name="tran5">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint5">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor5">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	    <transmission name="tran6">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="joint6">
+	     <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	     </joint>
+	    <actuator name="motor6">     
+		<mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+	  
+	  <gazebo reference="motor_base">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+	    <gazebo reference="acople_plano">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	    <gazebo reference="motor2">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+		  <gazebo reference="motor2g">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Blue" />
+	    </gazebo>
+	    <gazebo reference="acople_bracket_l">
+		<gravity>true</gravity>
+		 <self_collide>false</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	    <gazebo reference="acople_bracket_lg">
+		<gravity>true</gravity>
+		 <self_collide>false</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	    <gazebo reference="acople_plano">
+		<gravity>true</gravity>
+		 <self_collide>false</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	   <gazebo reference="motor3">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+	    <gazebo reference="acople_bracket_c1">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	   <gazebo reference="motor4">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+	    <gazebo reference="acople_plano_m4">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	    <gazebo reference="acople_plano_m41">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	    <gazebo reference="motor5">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+	    <gazebo reference="acople_bracket_c2">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/White" />
+	    </gazebo>
+	    <gazebo reference="motor6">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+	    
+	    
+</robot>
+
+

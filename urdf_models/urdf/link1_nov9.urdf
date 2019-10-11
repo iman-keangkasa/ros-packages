@@ -1,0 +1,43 @@
+<robot
+  name="link1">
+  <link
+    name="link1_fixed_origin_nov9">
+    <inertial>
+      <origin
+        xyz="0.048532 -0.2152 0.00476420000000001"
+        rpy="0 0 0" />
+      <mass
+        value="32.007" />
+      <inertia
+        ixx="1.06695162498236"
+        ixy="-0.227777437748705"
+        ixz="-0.0263563429413544"
+        iyy="0.977594438459942"
+        iyz="-0.00112484567476822"
+        izz="0.810219541810416" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://link1_fixed_origin_nov9/meshes/link1_fixed_origin_nov9.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://link1_fixed_origin_nov9/meshes/link1_fixed_origin_nov9.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

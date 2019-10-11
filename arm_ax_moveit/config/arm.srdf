@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="arm">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="dual_arm">
+        <joint name="joint1" />
+        <joint name="joint2" />
+        <joint name="joint3" />
+        <joint name="joint4" />
+        <joint name="joint5" />
+        <joint name="joint6" />
+    </group>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="acople_bracket_c1" link2="acople_bracket_c2" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="acople_bracket_l" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="acople_bracket_lg" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="acople_plano" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="acople_plano_m3" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="acople_plano_m4" reason="Default" />
+    <disable_collisions link1="acople_bracket_c1" link2="acople_plano_m41" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="motor2" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="motor2g" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="motor3" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_c1" link2="motor4" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_c1" link2="motor5" reason="Never" />
+    <disable_collisions link1="acople_bracket_c1" link2="motor6" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="acople_bracket_l" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="acople_bracket_lg" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="acople_plano_m3" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="acople_plano_m4" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="acople_plano_m41" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="motor3" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="motor4" reason="Never" />
+    <disable_collisions link1="acople_bracket_c2" link2="motor5" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_c2" link2="motor6" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_l" link2="acople_bracket_lg" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="acople_plano" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="acople_plano_m3" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_l" link2="acople_plano_m4" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="acople_plano_m41" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="base_link" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="motor2" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_l" link2="motor2g" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="motor3" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="motor4" reason="Never" />
+    <disable_collisions link1="acople_bracket_l" link2="support_box" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="acople_plano" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="acople_plano_m3" reason="Default" />
+    <disable_collisions link1="acople_bracket_lg" link2="acople_plano_m4" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="acople_plano_m41" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="base_link" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="motor2" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="motor2g" reason="Adjacent" />
+    <disable_collisions link1="acople_bracket_lg" link2="motor3" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="motor4" reason="Never" />
+    <disable_collisions link1="acople_bracket_lg" link2="support_box" reason="Never" />
+    <disable_collisions link1="acople_plano" link2="acople_plano_m3" reason="Never" />
+    <disable_collisions link1="acople_plano" link2="base_link" reason="Never" />
+    <disable_collisions link1="acople_plano" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_plano" link2="motor2" reason="Adjacent" />
+    <disable_collisions link1="acople_plano" link2="motor2g" reason="Adjacent" />
+    <disable_collisions link1="acople_plano" link2="motor3" reason="Never" />
+    <disable_collisions link1="acople_plano" link2="motor_base" reason="Adjacent" />
+    <disable_collisions link1="acople_plano" link2="support_box" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="acople_plano_m4" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="acople_plano_m41" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="base_link" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="motor2" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="motor2g" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="motor3" reason="Adjacent" />
+    <disable_collisions link1="acople_plano_m3" link2="motor4" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="motor5" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="motor6" reason="Never" />
+    <disable_collisions link1="acople_plano_m3" link2="support_box" reason="Never" />
+    <disable_collisions link1="acople_plano_m4" link2="acople_plano_m41" reason="Adjacent" />
+    <disable_collisions link1="acople_plano_m4" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_plano_m4" link2="motor2" reason="Never" />
+    <disable_collisions link1="acople_plano_m4" link2="motor3" reason="Never" />
+    <disable_collisions link1="acople_plano_m4" link2="motor4" reason="Adjacent" />
+    <disable_collisions link1="acople_plano_m4" link2="motor5" reason="Never" />
+    <disable_collisions link1="acople_plano_m41" link2="cam_link" reason="Never" />
+    <disable_collisions link1="acople_plano_m41" link2="motor3" reason="Never" />
+    <disable_collisions link1="acople_plano_m41" link2="motor4" reason="Never" />
+    <disable_collisions link1="acople_plano_m41" link2="motor5" reason="Adjacent" />
+    <disable_collisions link1="acople_plano_m41" link2="motor6" reason="Never" />
+    <disable_collisions link1="base_link" link2="motor2" reason="Never" />
+    <disable_collisions link1="base_link" link2="motor2g" reason="Never" />
+    <disable_collisions link1="base_link" link2="motor3" reason="Never" />
+    <disable_collisions link1="base_link" link2="motor_base" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="support_box" reason="Adjacent" />
+    <disable_collisions link1="cam_link" link2="motor2g" reason="Never" />
+    <disable_collisions link1="cam_link" link2="motor3" reason="Never" />
+    <disable_collisions link1="cam_link" link2="motor4" reason="Never" />
+    <disable_collisions link1="cam_link" link2="motor5" reason="Never" />
+    <disable_collisions link1="cam_link" link2="motor6" reason="Adjacent" />
+    <disable_collisions link1="motor2" link2="motor2g" reason="Never" />
+    <disable_collisions link1="motor2" link2="motor3" reason="Never" />
+    <disable_collisions link1="motor2" link2="motor_base" reason="Never" />
+    <disable_collisions link1="motor2" link2="support_box" reason="Never" />
+    <disable_collisions link1="motor2g" link2="motor3" reason="Never" />
+    <disable_collisions link1="motor2g" link2="motor_base" reason="Never" />
+    <disable_collisions link1="motor2g" link2="support_box" reason="Never" />
+    <disable_collisions link1="motor3" link2="motor4" reason="Never" />
+    <disable_collisions link1="motor3" link2="motor5" reason="Never" />
+    <disable_collisions link1="motor3" link2="motor6" reason="Never" />
+    <disable_collisions link1="motor3" link2="support_box" reason="Never" />
+    <disable_collisions link1="motor4" link2="motor5" reason="Never" />
+    <disable_collisions link1="motor5" link2="motor6" reason="Default" />
+    <disable_collisions link1="motor_base" link2="support_box" reason="Never" />
+</robot>

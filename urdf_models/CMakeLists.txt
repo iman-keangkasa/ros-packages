@@ -12,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   robot_state_publisher
   roscpp
   rospy
-  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -72,7 +71,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
+#   std_msgs  # Or other packages containing msgs
 # )
 
 ################################################
@@ -107,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES urdf_models
-#  CATKIN_DEPENDS joint_state_publisher robot_state_publisher roscpp rospy std_msgs
+#  CATKIN_DEPENDS joint_state_publisher robot_state_publisher roscpp rospy
 #  DEPENDS system_lib
 )
 

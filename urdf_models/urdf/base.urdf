@@ -1,0 +1,43 @@
+<robot
+  name="base">
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="-0.11257 -4.1589E-05 0.057533"
+        rpy="0 0 0" />
+      <mass
+        value="25.417" />
+      <inertia
+        ixx="0.347632032016038"
+        ixy="-0.000497937869254212"
+        ixz="0.0371909126715644"
+        iyy="0.710520929572187"
+        iyz="0.000244473496051384"
+        izz="0.978461123632107" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0.012"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_models/meshes/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.012"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_models/meshes/base.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

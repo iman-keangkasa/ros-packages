@@ -1,0 +1,40 @@
+<robot name="link1">
+	<link name="link1">
+		<inertial>
+			<origin
+				xyz="0.048532 0.0047642 0.2152"
+				rpy="0 0 0" />
+			<mass value="32.007" />
+			<inertia
+				ixx="1.06695162498236"
+				ixy="0.0263563429413544"
+				ixz="-0.227777437748705"
+				iyy="0.810219541810416"
+				iyz="0.00112484567476821"
+				izz="0.977594438459942" />
+			</inertial>
+		<visual>
+<origin
+xyz="0 0 0"
+rpy="0 0 0" />
+<geometry>
+<mesh
+filename="package://urdf_models/meshes/link1.STL" />
+</geometry>
+<material
+name="">
+<color
+rgba="0.79216 0.81961 0.93333 1" />
+</material>
+</visual>
+<collision>
+<origin
+xyz="0 0 0"
+rpy="0 0 0" />
+<geometry>
+<mesh
+filename="package://urdf_models/meshes/link1.STL" />
+</geometry>
+</collision>
+</link>
+</robot>

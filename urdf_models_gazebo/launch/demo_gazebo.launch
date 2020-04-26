@@ -22,7 +22,7 @@
   <arg name="gazebo_gui" default="true"/>
   <arg name="paused" default="false"/>
   <!-- By default, use the urdf location provided from the package -->
-  <arg name="urdf_path" default="$(find urdf_models)/urdf/roboto_non_gazebo_fixing_base.urdf"/>
+  <arg name="urdf_path" default="$(find urdf_models)/urdf/roboto_gazebo_hokudai.urdf"/>
 
   <!-- launch the gazebo simulator and spawn the robot -->
   <include file="$(find urdf_models_gazebo)/launch/gazebo.launch" >

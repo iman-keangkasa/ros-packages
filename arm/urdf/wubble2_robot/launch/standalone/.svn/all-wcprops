@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/standalone
+END
+arm_controllers.launch
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/standalone/arm_controllers.launch
+END
+head_controllers.launch
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/standalone/head_controllers.launch
+END

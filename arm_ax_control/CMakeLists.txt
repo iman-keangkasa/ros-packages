@@ -61,9 +61,9 @@ include_directories(
  add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
- #install(TARGETS position_controller_ax
- #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
- #)
+#install(TARGETS position_controller_ax
+#  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#)
 
 
 

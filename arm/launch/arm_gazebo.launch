@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<launch>
+  <rosparam file="$(find arm)/config/pro/earm_control.yaml" command="load"/>
+  <rosparam file="$(find arm)/config/pro/control.yaml" command="load"/>
+  <rosparam file="$(find arm)/config/pro/joints.yaml" command="load"/>
+  <!-- Show in Gazebo  -->
+ <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+<arg name="world_name" value="$(find summit_xl_gazebo)/worlds/summit_xl.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find arm)/urdf/arm.urdf'" />
+  <param name="robot_description" command="$(arg urdf_file)" />
+
+  <!-- send fake joint values 
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="true"/>
+  </node>-->
+
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+<remap from="/joint_states" to="/proarm/joint_states" />
+ </node>
+	  
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model proarm -param robot_description"/>
+
+        
+         <!-- load the controllers
+<node name="controller_spawners" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/proarm" args="joint1_pos joint2_pos joint3_pos joint4_pos joint5_pos joint6_pos
+    			   joint_state_controller" />-->
+<node name="controller_spawners" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/proarm" args="joint1_pos joint2_pos joint3_pos  joint4_pos joint5_pos joint6_pos
+    			   joint_state_controller" />
+
+  
+</launch>
+

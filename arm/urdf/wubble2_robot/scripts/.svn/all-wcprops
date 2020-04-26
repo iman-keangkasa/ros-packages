@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/1547/trunk/arrg/ua_apps/wubble2_robot/scripts
+END
+gripper_data_recorder.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1406/trunk/arrg/ua_apps/wubble2_robot/scripts/gripper_data_recorder.py
+END
+gripper_control.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1341/trunk/arrg/ua_apps/wubble2_robot/scripts/gripper_control.py
+END
+breaker_control.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1406/trunk/arrg/ua_apps/wubble2_robot/scripts/breaker_control.py
+END
+turn_torque_on_off.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1547/trunk/arrg/ua_apps/wubble2_robot/scripts/turn_torque_on_off.py
+END

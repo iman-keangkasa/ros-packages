@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/nodes
+END
+wubble_gripper_grasp_controller.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/nodes/wubble_gripper_grasp_controller.py
+END
+dynamixel_to_pr2_state_msgs.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/nodes/dynamixel_to_pr2_state_msgs.py
+END
+laptop_battery.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1463/trunk/arrg/ua_apps/wubble2_robot/nodes/laptop_battery.py
+END
+tilt_neck_laser.py
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/1504/trunk/arrg/ua_apps/wubble2_robot/nodes/tilt_neck_laser.py
+END
+joint_states_publisher.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/nodes/joint_states_publisher.py
+END

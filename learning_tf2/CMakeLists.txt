@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(learning_tf2)
-
+add_compile_options(-std=c++11)
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 
@@ -139,6 +139,7 @@ include_directories(
 add_executable(turtle_tf2_broadcaster src/turtle_tf2_broadcaster.cpp)
 add_executable(turtle_tf2_listener src/turtle_tf2_listener.cpp)
 add_executable(frame_tf2_broadcaster src/frame_tf2_broadcaster.cpp)
+add_executable(loading_parameter src/loading_parameter.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -162,6 +163,10 @@ target_link_libraries(turtle_tf2_listener
 )
 
 target_link_libraries(frame_tf2_broadcaster
+		${catkin_LIBRARIES}
+)
+
+target_link_libraries(loading_parameter
 		${catkin_LIBRARIES}
 )
 #############

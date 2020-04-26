@@ -1,0 +1,9 @@
+robot:
+        name: roboto_gazebo
+        joint:
+                name: joint4
+                limit:
+                        lower: -1.4835
+                        upper: 1.4835
+       
+

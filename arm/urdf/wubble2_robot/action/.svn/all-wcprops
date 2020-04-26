@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/1503/trunk/arrg/ua_apps/wubble2_robot/action
+END
+WubbleGripper.action
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1178/trunk/arrg/ua_apps/wubble2_robot/action/WubbleGripper.action
+END
+WubbleLaserTilt.action
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1503/trunk/arrg/ua_apps/wubble2_robot/action/WubbleLaserTilt.action
+END

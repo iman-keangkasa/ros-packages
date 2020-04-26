@@ -29,7 +29,6 @@ bool controller_message_active=false;
 
 void Controller_msg_Handler(const sensor_msgs::Joy &message)
 {
-
     controller_message = message;
     controller_message_active=true;    
 }
@@ -100,13 +99,10 @@ sleep(4.0);
     float Z_axes = 0.01;
     auto pose_current = move_group.getCurrentPose().pose;
 
-
-
     bool controller =false;
 
     while (controller)
     {
-        
         if(controller_message_active)
         {
             pose_current.position.x -=  XY_axes * controller_message.axes[1];

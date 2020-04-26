@@ -1,0 +1,44 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+    <param name="/use_sim_time" value="false"/>
+    <include file="$(find wubble2_robot)/launch/wubble2.machine" />
+
+    <!-- Start diagnostics aggregator -->
+    <include file="$(find wubble2_robot)/launch/diagnostics.launch" />
+
+    <!-- Start laptop battery monitor -->
+    <node name="laptop_battery_monitor" pkg="wubble2_robot" type="laptop_battery.py" />
+
+    <!-- Start Power Relay and Finger Pressure Sensor InterfaceKit -->
+    <node name="relay_arm_sensor_interface_kit" pkg="phidgets_ros" type="interface_kit.py" output="screen">
+        <param name="serial_number" type="int" value="124427"/>
+    </node>
+
+    <!-- Start Gripper IR Sensor InterfaceKit -->
+    <node name="top_interface_kit" pkg="phidgets_ros" type="interface_kit.py" output="screen">
+        <param name="serial_number" type="int" value="106950"/>
+    </node>
+
+    <!-- Send erratic description to parameter server -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find wubble_description)/urdf/wubble2.urdf.xacro'" />
+
+    <!-- Start the Erratic mobile base driver -->
+    <include file="$(find wubble2_robot)/launch/erratic_controller.launch" />
+    
+    <!-- Start arm, gripper and head motor controllers -->
+    <include file="$(find wubble2_robot)/launch/dynamixel_controllers.launch" />
+    <include file="$(find wubble2_robot)/launch/gripper_controllers.launch" />
+
+    <!-- Publish joint state information -->
+    <include file="$(find wubble2_robot)/launch/joint_state_aggregator.launch" />
+    <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen" />
+
+    <!-- Start base and neck lasers + filter chains for both -->
+    <include file="$(find wubble2_robot)/launch/laser_navigation.launch" />
+    <include file="$(find wubble2_robot)/launch/laser_perception.launch" />
+
+    <!-- Start kinect -->
+    <include file="$(find wubble2_robot)/launch/kinect_perception.launch" />
+</launch>
+

@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/1606/trunk/arrg/ua_apps/wubble2_robot/launch
+END
+robot_all.launch
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1548/trunk/arrg/ua_apps/wubble2_robot/launch/robot_all.launch
+END
+interpolated_ik.launch
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/interpolated_ik.launch
+END
+kinect.launch
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/launch/kinect.launch
+END
+dynamixel_controllers.launch
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/launch/dynamixel_controllers.launch
+END
+sim.machine
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/1406/trunk/arrg/ua_apps/wubble2_robot/launch/sim.machine
+END
+tilting_laser_ground_filter.launch
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/1406/trunk/arrg/ua_apps/wubble2_robot/launch/tilting_laser_ground_filter.launch
+END
+laser_navigation.launch
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1377/trunk/arrg/ua_apps/wubble2_robot/launch/laser_navigation.launch
+END
+joint_state_aggregator.launch
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/1502/trunk/arrg/ua_apps/wubble2_robot/launch/joint_state_aggregator.launch
+END
+power_off.launch
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1369/trunk/arrg/ua_apps/wubble2_robot/launch/power_off.launch
+END
+tabletop_segmentation.launch
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/1606/trunk/arrg/ua_apps/wubble2_robot/launch/tabletop_segmentation.launch
+END
+power_on.launch
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/1369/trunk/arrg/ua_apps/wubble2_robot/launch/power_on.launch
+END
+robot_static_map.launch
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1344/trunk/arrg/ua_apps/wubble2_robot/launch/robot_static_map.launch
+END
+imu.launch
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1548/trunk/arrg/ua_apps/wubble2_robot/launch/imu.launch
+END
+planning_environment.launch
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/planning_environment.launch
+END
+trajectory_filter.launch
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/trajectory_filter.launch
+END
+erratic_controller.launch
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/1548/trunk/arrg/ua_apps/wubble2_robot/launch/erratic_controller.launch
+END
+wubble2.machine
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/1406/trunk/arrg/ua_apps/wubble2_robot/launch/wubble2.machine
+END
+robot_common.launch
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1548/trunk/arrg/ua_apps/wubble2_robot/launch/robot_common.launch
+END
+gripper_controllers.launch
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/1538/trunk/arrg/ua_apps/wubble2_robot/launch/gripper_controllers.launch
+END
+laser_perception.launch
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1505/trunk/arrg/ua_apps/wubble2_robot/launch/laser_perception.launch
+END
+arm_navigation.launch
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/arm_navigation.launch
+END
+kinect_perception.launch
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/launch/kinect_perception.launch
+END
+move_arm.launch
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/launch/move_arm.launch
+END
+robot_gmapping.launch
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1344/trunk/arrg/ua_apps/wubble2_robot/launch/robot_gmapping.launch
+END
+swissranger.launch
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1019/trunk/arrg/ua_apps/wubble2_robot/launch/swissranger.launch
+END
+diagnostics.launch
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/1413/trunk/arrg/ua_apps/wubble2_robot/launch/diagnostics.launch
+END

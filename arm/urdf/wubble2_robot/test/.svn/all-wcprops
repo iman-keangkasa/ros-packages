@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/1470/trunk/arrg/ua_apps/wubble2_robot/test
+END
+test_interpolated_ik_wubble_arm.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1435/trunk/arrg/ua_apps/wubble2_robot/test/test_interpolated_ik_wubble_arm.py
+END
+test_gripper_posture_controller.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/1347/trunk/arrg/ua_apps/wubble2_robot/test/test_gripper_posture_controller.py
+END
+test_simple_trajectory.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1059/trunk/arrg/ua_apps/wubble2_robot/test/test_simple_trajectory.py
+END
+test_gripper_action.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1470/trunk/arrg/ua_apps/wubble2_robot/test/test_gripper_action.py
+END
+test_gripper_opening.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1347/trunk/arrg/ua_apps/wubble2_robot/test/test_gripper_opening.py
+END

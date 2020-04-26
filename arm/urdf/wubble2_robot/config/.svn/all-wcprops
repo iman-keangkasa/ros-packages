@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/1547/trunk/arrg/ua_apps/wubble2_robot/config
+END
+wubble_diagnostics.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1470/trunk/arrg/ua_apps/wubble2_robot/config/wubble_diagnostics.yaml
+END
+filters.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/1094/trunk/arrg/ua_apps/wubble2_robot/config/filters.yaml
+END
+multi_dof_joints.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/1377/trunk/arrg/ua_apps/wubble2_robot/config/multi_dof_joints.yaml
+END
+wubble_gripper.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/config/wubble_gripper.yaml
+END
+wubble_arm_trajectory_controller.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/config/wubble_arm_trajectory_controller.yaml
+END
+wubble_hand_description.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/1243/trunk/arrg/ua_apps/wubble2_robot/config/wubble_hand_description.yaml
+END
+wubble_arm.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/1547/trunk/arrg/ua_apps/wubble2_robot/config/wubble_arm.yaml
+END
+wubble_head.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/config/wubble_head.yaml
+END
+dynamixel_ports.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/config/dynamixel_ports.yaml
+END

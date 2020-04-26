@@ -1,0 +1,24 @@
+joints: ['joint1']
+
+joint1_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: joint1
+    joint_speed: 3.5
+    motor:
+        id: 2
+        init: 512
+        min: 0
+        max: 1023
+
+arm_controller:
+   controller:
+       package: dynamixel_controllers
+       module: joint_trajectory_action_controller
+       type: JointTrajectoryActionController
+   joint_trajectory_action_node:
+       min_velocity: 0.001
+       constraints:
+           goal_time: 0.001

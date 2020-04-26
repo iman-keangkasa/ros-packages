@@ -1,7 +1,15 @@
 <launch>
-	<arg name="rvizconfig" default="$(find urdf_models)/rviz/robot_viewer.rviz"/>
+        
+        <arg name="rvizconfig" default="$(find urdf_models)/rviz/robot_viewer.rviz"/>
+        <arg name="model" default="roboto_gazebo_hokudai_gazebo.urdf"/>
+        <!--This will load the textfile into rosparam directly -->
+        <!--param name="robot_description" textfile="$(find urdf_models)/urdf/$(arg model)"/-->
 
-	<param name="robot_description" textfile="$(find urdf_models)/urdf/roboto_gazebo.urdf"/>
+         <!--param name="robot_description" textfile="$(find urdf_models)/urdf/roboto_gazebo_hokudai_gazebo.urdf"/-->
+        
+         <param name="robot_description" command="$(find xacro)/xacro.py --inorder $(find melfa_description)/urdf/rv7fr-dh-floor.urdf.xacro"/>
+
+	<!--rosparam command="load" file="$(find urdf_models)/config/joints_limit.yaml"/-->
 	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher"/>
 	
 	<param name="use_gui" value="true"/>

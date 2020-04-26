@@ -1,0 +1,31 @@
+head_pan_controller:
+    type: dynamixel_hardware_interface/JointPositionController
+    joint: head_pan_joint
+    motors:
+        - id: 10
+          init: 512
+          min: 0
+          max: 1023
+          compliance_margin: 0
+          compliance_slope: 16
+
+head_tilt_controller:
+    type: dynamixel_hardware_interface/JointPositionController
+    joint: head_tilt_joint
+    motors:
+        - id: 11
+          init: 1690
+          min: 600
+          max: 3500
+          compliance_margin: 0
+          compliance_slope: 16
+
+neck_tilt_controller:
+    type: dynamixel_hardware_interface/JointPositionController
+    joint: neck_tilt_joint
+    motors:
+        - id: 12
+          init: 2047
+          min: 2000
+          max: 3130
+

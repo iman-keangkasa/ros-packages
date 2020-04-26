@@ -1,0 +1,11 @@
+<?xml version='1.0'?>
+<launch>
+		<arg name="rvizconfig" default="$(find denso_ve026a)/rviz/display_gazebo.rviz"/>
+	<param name="robot_description" textfile="$(find denso_ve026a)/urdf/ve026a_old.urdf"/>
+	<!--param command="load" file="$(find denso_ve026a)/config/joints_limit.yaml"-->
+	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher"/>
+	
+	<param name="use_gui" value="true"/>
+	<node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
+	<node pkg="rviz" type="rviz" name="rviz"/> <!-- args="-d $(arg rvizconfig)" required="true"-->
+</launch>

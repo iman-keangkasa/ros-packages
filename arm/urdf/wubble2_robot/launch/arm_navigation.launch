@@ -1,0 +1,63 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+    <!-- send additional description parameters -->
+    <include file="$(find wubble2_robot)/launch/planning_environment.launch" />
+
+    <node pkg="collision_map" type="collision_map_self_occ_node" name="collision_map_self_occ_node" respawn="true" output="screen" machine="c2">
+        <param name="self_see_default_padding" type="double" value="0.04" />
+        <param name="self_see_default_scale" type="double" value="1.0" />
+         
+        <rosparam command="load" file="$(find wubble_description)/params/w2_self_filter.yaml" />
+        
+        <!-- if someone asks for a stable map, publish the static map on the dynamic
+        map topic and no longer publish dynamic maps -->
+        <param name="publish_static_over_dynamic_map" type="bool" value="true" />
+        
+        <!-- we do not want a separate map with occlusions alone -->
+        <param name="publish_occlusion" type="bool" value="true" />
+        <param name="fixed_frame" type="string" value="base_link" />
+        
+        <!-- define a box of size 2x3x4 around (1.1,  0, 0) in the robot frame -->
+        <param name="robot_frame" type="string" value="base_link" />
+        
+        <param name="origin_x" type="double" value="1.1" />
+        <param name="origin_y" type="double" value="0.0" />
+        <param name="origin_z" type="double" value="0.0" />
+        
+        <param name="dimension_x" type="double" value="1.5" />
+        <param name="dimension_y" type="double" value="1.5" />
+        <param name="dimension_z" type="double" value="2.0" />
+        
+        <!-- set the resolution (1.0 cm) -->
+        <param name="resolution" type="double" value="0.01" />
+        
+        <!-- cloud sources -->
+        <rosparam command="load" file="$(find wubble_description)/params/w2_collision_map_sources.yaml" />
+    </node>
+
+    <node pkg="planning_environment" type="environment_server" output="screen" name="environment_server" machine="c2">
+        <param name="use_monitor" type="bool" value="true"/>
+        <param name="use_collision_map" type="bool" value="true"/>
+    </node>
+
+    <node pkg="planning_environment" type="planning_scene_validity_server" output="screen" name="planning_scene_validity_server" machine="c2"/>
+
+    <!-- load collision free ik -->
+    <node pkg="arm_kinematics_constraint_aware" type="arm_kinematics_constraint_aware" name="wubble2_left_arm_kinematics" machine="c2">
+        <param name="group" type="string" value="left_arm" />
+        <param name="left_arm/root_name" type="string" value="L0_base_link" />
+        <param name="left_arm/tip_name" type="string" value="L7_wrist_roll_link" />
+        <param name="kinematics_solver" type="string" value="wubble_arm_kinematics/WubbleArmKinematicsPlugin" />
+    </node>
+
+    <node name="ompl_planning" pkg="ompl_ros_interface" type="ompl_ros" output="screen" machine="c2">
+        <param name="default_planner_config" type="string" value="SBLkConfig1" />
+        <rosparam command="load" file="$(find wubble2_arm_navigation)/config/ompl_planning.yaml" />
+    </node>
+
+    <include file="$(find wubble2_robot)/launch/trajectory_filter.launch" />
+    <include file="$(find wubble2_robot)/launch/move_arm.launch" />
+    <include file="$(find wubble2_robot)/launch/interpolated_ik.launch" />
+</launch>
+

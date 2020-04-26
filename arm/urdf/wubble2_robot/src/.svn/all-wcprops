@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/src
+END
+tilt_laser_action_node.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1536/trunk/arrg/ua_apps/wubble2_robot/src/tilt_laser_action_node.cpp
+END
+joint_state_aggregator.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/1502/trunk/arrg/ua_apps/wubble2_robot/src/joint_state_aggregator.cpp
+END

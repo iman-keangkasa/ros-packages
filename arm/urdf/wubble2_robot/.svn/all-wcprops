@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/1606/trunk/arrg/ua_apps/wubble2_robot
+END
+manifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/1537/trunk/arrg/ua_apps/wubble2_robot/manifest.xml
+END
+mainpage.dox
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/1017/trunk/arrg/ua_apps/wubble2_robot/mainpage.dox
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/1503/trunk/arrg/ua_apps/wubble2_robot/CMakeLists.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/1017/trunk/arrg/ua_apps/wubble2_robot/Makefile
+END

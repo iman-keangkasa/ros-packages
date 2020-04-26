@@ -1,0 +1,9 @@
+<!-- -*- mode: XML -*- -->
+
+<launch>
+    <include file="$(find wubble_robot)/launch/robot_common.launch" />
+    
+    <!-- enable navigation with SLAM -->
+    <include file="$(find wubble_2dnav_slam)/wubble_2dnav.launch" />
+</launch>
+

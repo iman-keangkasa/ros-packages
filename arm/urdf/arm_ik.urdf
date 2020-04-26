@@ -1,0 +1,255 @@
+
+<robot name="proarm">
+
+  <link name="world"/>
+    <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin  xyz="0 0.0 0.005"  rpy="0.0 0 0" />
+  </joint>
+
+  <link name="base_link">
+  <inertial>
+      <origin  xyz="0.0 0.0 0.0"  rpy="0 0 0" />
+      <mass  value="0.01" />
+      <inertia ixx="0.016667333" ixy="0.0" ixz="0.00"  iyy="0.016667333"  iyz="0.0" izz="0.016667333" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <geometry>
+        <box size="0.1 0.1 0.01"/>
+      </geometry>
+      <material name="clear_gray"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <geometry>
+        <box size="0.1 0.1 .01"/>
+      </geometry>
+    </collision>
+  </link>
+  
+ 
+
+   <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link_pilar1"/>
+     <origin  xyz="0.0 0.0 0.18"  rpy="0.0 3.141592654 0.0" />
+    <axis  xyz="0 0 1" />
+    <limit  lower="-3.15159" upper="3.14159" effort="2.0"  velocity="2.57" />
+  </joint>
+
+  
+ <link  name="link_pilar1">
+    <inertial>
+     <origin  xyz="0.025 0.025 0.0"  rpy="0 0 0" />
+      <mass  value="0.1" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin  xyz="0.025 0.025 0.0"  rpy="0 0 0" />
+      <geometry>     
+        <mesh filename="package://arm/meshes/dynamixel_pro/50x50x180.stl" scale="0.001 0.001 0.001"/>
+      </geometry>   
+       <material name="white"/>
+    </visual>
+    <collision>
+    <origin  xyz="0.025 0.025 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/50x50x180.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+   <joint name="joint2" type="revolute">
+    <parent link="link_pilar1"/>
+    <child link="link_pilar2"/>
+     <origin  xyz="-0.0 -0.0 -0.035"  rpy="3.14159 0.0 3.14159" />
+     <axis  xyz="0 1 0" />
+     <limit  lower="-2.32" upper="2.32" effort="10"  velocity="4.57" />
+  </joint>
+
+
+
+ <link  name="link_pilar2">
+    <inertial>
+     <origin  xyz="0.025 0.025 0.066"  rpy="0.0 0.0 0.0" />
+      <mass  value="0.08" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin  xyz=" 0.025 0.025 0.066"  rpy="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/50x50x150.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+       <material name="black"/>
+    </visual>
+    <collision>
+    <origin  xyz=" 0.025 0.025 0.066"  rpy="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/50x50x150.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+
+
+
+
+   <joint name="joint3" type="revolute">
+    <parent link="link_pilar2"/>
+    <child link="link_motor_mx642"/>
+     <origin  xyz="0.0 0.0 0.272"  rpy="0.0 0.0  3.14159" />
+     <axis  xyz="0 1 0" />
+    <limit  lower="-2.32" upper="2.32" effort="10"  velocity="4.57" />
+  </joint> 
+
+
+
+ <link  name="link_motor_mx642">
+    <inertial>
+     <origin  xyz="0 0 0.086"  rpy=" 0 0 0"/>
+      <mass  value="0.07" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin  xyz="0 0 0.086"  rpy=" 0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/mx64.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+       <material name="black"/>
+    </visual>
+    <collision>
+    <origin  xyz="0 0 0.086"  rpy=" 0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/mx64.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+   <joint name="joint4" type="continuous">
+    <parent link="link_motor_mx642"/>
+    <child link="link_motor_mx281"/>
+     <origin  xyz="0.00 0.0 0.151"  rpy="1.570796327 0.0 -1.570796327 " />
+     <axis  xyz="0 1 0" />
+    <limit  lower="-3.14159" upper="3.1459" effort="10"  velocity="4.57" />
+  </joint>
+
+ <link  name="link_motor_mx281">
+    <inertial>
+     <origin  xyz="0 0 0.0"  rpy="0 0 0"/>
+      <mass  value="0.01" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/mx28.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+       <material name="black"/>
+    </visual>
+    <collision>
+    <origin  xyz="0 0 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/mx28.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+ <joint name="joint5" type="revolute">
+    <parent link="link_motor_mx281"/>
+    <child link="link_bracket_f7l"/>
+     <origin  xyz="0.0 0.0 0.0"  rpy="0.0 -1.570796327 0.0" />
+     <axis  xyz="1 0 0" />
+    <limit  lower="-1.825" upper="1.825" effort="10.0"  velocity="3.57" />
+  </joint>
+
+ <link  name="link_bracket_f7l">
+    <inertial>
+     <origin  xyz="0.0 0.0 0.0"  rpy="0.0 0.0 0.0" />
+      <mass  value="0.01" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin  xyz="0.0 0.0 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/fr07h.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+       <material name="black"/>
+    </visual>
+    <collision>
+    <origin  xyz="-0.0 -0.0 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/fr07h.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+
+   <joint name="joint6" type="revolute">
+    <parent link="link_bracket_f7l"/>
+    <child link="link_motor_mx282"/>
+     <origin  xyz="0.0 0.05 0.0"  rpy="1.570796327 3.1415926 0" />
+     <axis  xyz="0 0 1" />
+    <limit  lower="-3.14159" upper="3.1459" effort="10"  velocity="5.57" />
+  </joint>
+
+ <link  name="link_motor_mx282">
+    <inertial>
+     <origin  xyz="0.00 0.0 0.0"  rpy="0 0 0" />
+      <mass  value="0.01" />
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.000"  iyy="0.0001"  iyz="0.0" izz="0.0001" />
+    </inertial>
+    <visual>
+      <origin  xyz="0.00 0.0 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/mx28.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+       <material name="black"/>
+    </visual>
+    <collision>
+    <origin  xyz="0.00 0.0 0.0"  rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://arm/meshes/dynamixel_pro/mx28.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+  </link>
+ <!-- 
+  <gazebo reference="base_link">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+ <gazebo reference="link_pilar1">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+
+ <gazebo reference="link_pilar2">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+ <gazebo reference="link_motor_mx642">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+ <gazebo reference="link_motor_mx281">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+ <gazebo reference="link_bracket_f7l">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>
+ <gazebo reference="link_motor_mx282">
+		<gravity>true</gravity>
+		 <self_collide>true</self_collide>
+		<material value="Gazebo/Black" />
+	    </gazebo>-->
+</robot>
+
+

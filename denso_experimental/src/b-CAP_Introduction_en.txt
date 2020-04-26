@@ -1,0 +1,46 @@
+================================================================================
+	VE026A Specifications of b-CAP Communication
+
+						December 14, 2012
+						DENSO WAVE INCORPORATED
+================================================================================
+This document describes "VE026A Specifications of b-CAP Communication"
+Please read this document carefully before operation.
+
+
+----------
+1.Introduction
+
+When you create a program with the assistance of  this "VE026A Specifications of b-CAP Communication", 
+please refer to "VE026A_b-CAP_GUIDE_en.pdf" which is stored in "VE026_MANUALS\b-CAP\DENSO_b-CAP" folder, 
+and sample programs stored in "VE026_PROGRAM_SAMPLE\b-CAP" folder.
+
+
+----------
+2. b-CAP Tester
+
+- Installation of WINCAPSIII
+
+  Set the accompanying CD to the drive.
+  Launch the installer from "Setup.exe" in the APPLICATION_PROGRAM, 
+  then complete the installation in accordance with the instruction.
+
+  License input dialogue appears while installation
+  Enter the following license code into the license input dialogue. 
+
+  [License code for WINCAPSáV VE026AÅF WCGS-UZXM-TP1C-Q4ZL ]
+
+  Once WINCAPSIII is installed, b-CAP Tester which is accompanying tool of ORiN2 SDK is also installed.
+  This tool enables you to check transmitted/received packet data to/from VE026A. 
+  This is installed in "ORiN2\CAP\b-CAP\CapLib\DENSO\Bin" folder.
+
+
+----------
+3 Application Considerations
+
+  This specification guarantees to work VE026A utilizing b-CAP communication. 
+  However programming support service is NOT included in this specification.
+  Please be reminded that we do NOT provide any programming support service. 
+
+
+----------

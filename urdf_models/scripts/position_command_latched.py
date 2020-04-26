@@ -31,25 +31,27 @@ from sensor_msgs.msg import JointState
 #simple state_publisher
 
 def state_publisher():
-    pub = rospy.Publisher('joint_states', JointState, queue_size=1)
+    pub = rospy.Publisher('joint_states', JointState, queue_size=1,latch=True)
     rospy.init_node('state_publisher')
     #msg = JointState()
     rate = rospy.Rate(1) #1Hz
     position = 6 * [ 0.0 ]
     velocity = 6 * [ 0.0 ]
     torque = 6 * [ 0.0 ]
-    while not rospy.is_shutdown():
-        msg = JointState()
+
+## Non-latch start
+#    while not rospy.is_shutdown():
+#        msg = JointState()
        
-        msg.header.stamp = rospy.Time.now()
-        msg.name = ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6"]
+#        msg.header.stamp = rospy.Time.now()
+#        msg.name = ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6"]
         
-        msg.position =  position
+#        msg.position =  position
         
 
-        msg.velocity = velocity       
-        msg.effort = torque
-        pub.publish(msg)
+#        msg.velocity = velocity       
+#        msg.effort = torque
+#        pub.publish(msg)
 
 #        position_input = raw_input("Enter joint values in radian: ")
 #        velocity_input = raw_input( "Enter joint velocity radian/sec: " )
@@ -57,9 +59,33 @@ def state_publisher():
 #        position = map( float, position_input.split() )
 #        velocity = map( float, velocity_input.split() )
 #        torque = map( float, torque_input.split() )
-        position = [ -1.5, -1.5, -1.5, -1.5, -1.5, -1.5 ]
-        velocity = [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ]
-        rate.sleep()
+#        position = [ -1.5, -1.5, -1.5, -1.5, -1.5, -1.5 ]
+#        velocity = [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ]
+#        rate.sleep()
+# Non-latch ends
+
+    msg = JointState()
+       
+    msg.header.stamp = rospy.Time.now()
+    msg.name = ["joint1", "joint2", "joint3", "joint4", "joint5", "joint6"]
+        
+    msg.position =  position
+        
+
+    msg.velocity = velocity       
+    msg.effort = torque
+    pub.publish(msg)
+
+#        position_input = raw_input("Enter joint values in radian: ")
+#        velocity_input = raw_input( "Enter joint velocity radian/sec: " )
+#        torque_input = raw_input( "Enter the torque in Nm" )
+#        position = map( float, position_input.split() )
+#        velocity = map( float, velocity_input.split() )
+#        torque = map( float, torque_input.split() )
+    position = [ -1.5, -1.5, -1.5, -1.5, -1.5, -1.5 ]
+    velocity = [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ]
+    rate.sleep()
+
 if __name__ == '__main__':
     try:
         state_publisher()

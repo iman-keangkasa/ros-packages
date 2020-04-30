@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-	<node name="basic_shapes_node" pkg="rviz_markers" type="basic_shapes_node"/>
+	<node name="points_and_lines_node" pkg="rviz_markers" type="points_and_lines_node"/>
 	<node name="static_transform_publisher" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 map my_frame 1" />
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rviz_markers)/rviz/basic_shapes.rviz"/>
 </launch>
